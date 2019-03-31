@@ -411,6 +411,314 @@ When clicking on "New" (right hand side) as shown on the Figure below:
 >  You may need to change the default browser for starting your jupyter notebook. All the examples in this lesson have been tested with [Google chrome](https://www.google.com/chrome/browser/desktop/index.html?brand=CHBD&gclid=CjwKCAiA15vTBRAHEiwA7Snfc8Ly7Kz3VH-sKSABkCHsiAhviP1ZJzyzV5wUPasjHs27d_0PcESFkhoCOskQAvD_BwE)
 {: .callout}
 
+# What is Jupyter Notebook?
 
+The Jupyter Notebook is an open-source web application that allows you to create and share documents that contain live code, 
+equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical 
+modeling, data visualization, machine learning, and much more.
+
+**Jupyter Notebook runs iPython**
+
+IPython provides a rich toolkit to help you make the most out of using Python, with:
+
+Powerful Python shells (terminal and Qt-based).
+A web-based notebook with the same core features but support for code, text, mathematical expressions, inline plots and other rich media.
+Support for interactive data visualization and use of GUI toolkits.
+Flexible, embeddable interpreters to load into your own projects.
+Easy to use, high performance tools for parallel computing.
+
+(Tutorial here: http://ipython.readthedocs.io/en/stable/interactive/tutorial.html)
+
+## Markdown commands
+
+You can add comments (and headings) with the help of the drop list on the top bar (Code vs Markdown)
+
+A summary of the list of Markdown commands are given here:
+https://nbviewer.jupyter.org/github/twistedhardware/mltutorial/blob/master/notebooks/jupyter/2.%20Markdown%20%26%20LaTeX.ipynb
+
+## System shell commands
+
+
+```python
+%lsmagic
+```
+
+
+
+
+    Available line magics:
+    %alias  %alias_magic  %autocall  %automagic  %autosave  %bookmark  %cd  %clear  %cls  %colors  %config  %connect_info  %copy  %ddir  %debug  %dhist  %dirs  %doctest_mode  %echo  %ed  %edit  %env  %gui  %hist  %history  %killbgscripts  %ldir  %less  %load  %load_ext  %loadpy  %logoff  %logon  %logstart  %logstate  %logstop  %ls  %lsmagic  %macro  %magic  %matplotlib  %mkdir  %more  %notebook  %page  %pastebin  %pdb  %pdef  %pdoc  %pfile  %pinfo  %pinfo2  %popd  %pprint  %precision  %profile  %prun  %psearch  %psource  %pushd  %pwd  %pycat  %pylab  %qtconsole  %quickref  %recall  %rehashx  %reload_ext  %ren  %rep  %rerun  %reset  %reset_selective  %rmdir  %run  %save  %sc  %set_env  %store  %sx  %system  %tb  %time  %timeit  %unalias  %unload_ext  %who  %who_ls  %whos  %xdel  %xmode
+    
+    Available cell magics:
+    %%!  %%HTML  %%SVG  %%bash  %%capture  %%cmd  %%debug  %%file  %%html  %%javascript  %%js  %%latex  %%markdown  %%perl  %%prun  %%pypy  %%python  %%python2  %%python3  %%ruby  %%script  %%sh  %%svg  %%sx  %%system  %%time  %%timeit  %%writefile
+    
+    Automagic is ON, % prefix IS NOT needed for line magics.
+
+
+
+if you want to for example move in between directories you can use bash commands through Jupyter
+
+
+```python
+ %pwd # current directory
+```
+
+
+
+
+    'C:\\Users\\yellow_chocobo\\Desktop\\python_class\\python_small_lessons'
+
+
+
+Move back and forth in the directory
+
+
+```python
+%ls # list of files in directory
+```
+
+     Volume in drive C has no label.
+     Volume Serial Number is 622E-E2BB
+    
+     Directory of C:\Users\yellow_chocobo\Desktop\python_class\python_small_lessons
+    
+    
+     Directory of C:\Users\yellow_chocobo\Desktop\python_class\python_small_lessons
+    
+    
+     Directory of C:\Users\yellow_chocobo\Desktop\python_class\python_small_lessons
+    
+    
+     Directory of C:\Users\yellow_chocobo\Desktop\python_class\python_small_lessons
+    
+    
+     Directory of C:\Users\yellow_chocobo\Desktop\python_class\python_small_lessons
+    
+    
+     Directory of C:\Users\yellow_chocobo\Desktop\python_class\python_small_lessons
+    
+    
+
+    File Not Found
+    
+
+
+```python
+# move to directory data
+%cd data
+%pwd # print the path
+
+# move back to original directory
+%cd ..
+%pwd # print path
+```
+
+    C:\Users\yellow_chocobo\Desktop\python_class\python_small_lessons\data
+    C:\Users\yellow_chocobo\Desktop\python_class\python_small_lessons
+    
+
+
+
+
+    'C:\\Users\\yellow_chocobo\\Desktop\\python_class\\python_small_lessons'
+
+
+
+## Easy access to previous calculations (History)
+
+Input and output history are kept in variables called In and Out, keyed by the prompt numbers, e.g. In[4]. The last three objects in output history are also kept in variables named _, __ and ___.
+
+
+```python
+2
+```
+
+
+
+
+    2
+
+
+
+
+```python
+3
+```
+
+
+
+
+    3
+
+
+
+
+```python
+4
+```
+
+
+
+
+    4
+
+
+
+
+```python
+d = _ + __ # 4 + 3
+print (d)
+```
+
+    7
+    
+
+
+```python
+e = _ + __ + ___ # 4 + 3 + 2
+print(e)
+```
+
+    9
+    
+
+You can also extract the content of a particular previously run cell with the help of ```_icellnumber```
+
+
+```python
+_i8 # will return 4
+```
+
+
+
+
+    '4'
+
+
+
+
+```python
+_i4 # will return all the commands in the cell 
+```
+
+
+
+
+    '%ls # list of files in directory'
+
+
+
+## Easy to get help
+It is not possible to remember what each function is supposed to do or what kind of inputs need to be specified. It is therefore crucial to extensively use the help function
+
+
+```python
+import numpy as np
+np.array? # same as help(np.array)
+```
+
+Docstring:
+array(object, dtype=None, copy=True, order='K', subok=False, ndmin=0)
+
+Create an array.
+
+Parameters
+----------
+object : array_like
+    An array, any object exposing the array interface, an object whose
+    __array__ method returns an array, or any (nested) sequence.
+dtype : data-type, optional
+    The desired data-type for the array.  If not given, then the type will
+    be determined as the minimum type required to hold the objects in the
+    sequence.  This argument can only be used to 'upcast' the array.  For
+    downcasting, use the .astype(t) method.
+copy : bool, optional
+    If true (default), then the object is copied.  Otherwise, a copy will
+    only be made if __array__ returns a copy, if obj is a nested sequence,
+    or if a copy is needed to satisfy any of the other requirements
+    (`dtype`, `order`, etc.).
+order : {'K', 'A', 'C', 'F'}, optional
+    Specify the memory layout of the array. If object is not an array, the
+    newly created array will be in C order (row major) unless 'F' is
+    specified, in which case it will be in Fortran order (column major).
+    If object is an array the following holds.
+
+    ===== ========= ===================================================
+    order  no copy                     copy=True
+    ===== ========= ===================================================
+    'K'   unchanged F & C order preserved, otherwise most similar order
+    'A'   unchanged F order if input is F and not C, otherwise C order
+    'C'   C order   C order
+    'F'   F order   F order
+    ===== ========= ===================================================
+
+    When ``copy=False`` and a copy is made for other reasons, the result is
+    the same as if ``copy=True``, with some exceptions for `A`, see the
+    Notes section. The default order is 'K'.
+subok : bool, optional
+    If True, then sub-classes will be passed-through, otherwise
+    the returned array will be forced to be a base-class array (default).
+ndmin : int, optional
+    Specifies the minimum number of dimensions that the resulting
+    array should have.  Ones will be pre-pended to the shape as
+    needed to meet this requirement.
+
+Returns
+-------
+out : ndarray
+    An array object satisfying the specified requirements.
+
+See Also
+--------
+empty_like : Return an empty array with shape and type of input.
+ones_like : Return an array of ones with shape and type of input.
+zeros_like : Return an array of zeros with shape and type of input.
+full_like : Return a new array with shape of input filled with value.
+empty : Return a new uninitialized array.
+ones : Return a new array setting values to one.
+zeros : Return a new array setting values to zero.
+full : Return a new array of given shape filled with value.
+
+
+Notes
+-----
+When order is 'A' and `object` is an array in neither 'C' nor 'F' order,
+and a copy is forced by a change in dtype, then the order of the result is
+not necessarily 'C' as expected. This is likely a bug.
+
+Examples
+--------
+....................................
+
+## Auto-completion feature
+The auto-completion feature can be used by pressing tab. A drop-down list of available functions can be selected from.
+
+
+```python
+%config IPCompleter.greedy=True # auto-completion feature under Jupyter, is usually automatically on
+```
+
+Give some information on all the functions available in the numpy module
+
+
+```python
+#np.a
+```
+
+Give all available basis command/functions that can be applied to the string variable *Moon*
+
+
+```python
+name = "Moon"
+```
+
+
+```python
+#name. #
+```
+
+## Other tools in Anaconda Navigator
+- Spyder (better graphical interface, really similar to Matlab, very good help tool)
+- Jupyter Lab (similar to Jupyter but provides easier access to folders, terminal and text files)
 
 {% include links.md %}
